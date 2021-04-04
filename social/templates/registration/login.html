@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+ {% block css %}
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  {% endblock %}
+
+{% load crispy_forms_tags %}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-sm-6" >
+            <div class="card">
+                <div class="card-body ">
+				 
+                    <h3 class="row justify-content-center"> Sign In</h3>
+                    <form method="post" novalidate> {% csrf_token %}
+                        {{ form | crispy}}						
+                        <button type="submit" class="btn btn-success ">Login</button>
+                    </form>
+                    <p>Forgot your password? <a  href="/accounts/password/reset/">Reset it</a></p>
+                    <p>Not a member? <a  href="/accounts/register/">Register</a></p>
+                        
+                        <p class="row justify-content-center"><strong>-- OR --</strong></p>
+                        <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-large btn-info fa fa-facebook" href="#">
+                        <i class="icon-info"></i> Login with Facebook</a>
+                            OR 
+                          <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-large btn-info fa fa-twitter my-3" href="#">
+                        <i class="icon-info-sign"></i>Login with twitter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
